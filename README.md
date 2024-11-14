@@ -8,6 +8,8 @@ The primary aim of this project is to develop a robust machine learning pipeline
 
 ## Project aims and tasks
 
+https://github.com/MultiplAI-UoSuffolk/mRNA-Data/issues/12
+
 ### Tasks and Deliverables
 
 #### Phase 1: Data Acquisition and Preprocessing
