@@ -1,0 +1,202 @@
+% Gemini theme
+% See: https://rev.cs.uchicago.edu/k4rtik/gemini-uccs
+% A fork of https://github.com/anishathalye/gemini
+
+\documentclass[final]{beamer}
+
+% ====================
+% Packages
+% ====================
+\usepackage{amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[orientation=portrait,size=a0,scale=1.3]{beamerposter}
+%\usepackage[size=custom,width=120,height=72,scale=1.0]{beamerposter}
+\geometry{paperwidth=48in,paperheight=36in}
+\usetheme{gemini}
+\usecolortheme{ucf}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+% ====================
+% Lengths
+% ====================
+
+% If you have N columns, choose \sepwidth and \colwidth such that
+% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.025\paperwidth}
+\setlength{\colwidth}{0.3\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Title
+% ====================
+
+\title{The Grammar of mRNA: Language Modelling methods for genomic sequence detection on cardiovascular patient data}
+
+\author{Dr Kakia Chatsiou \inst{1} \and Dr Suha Al Naimi \inst{1} \and Ben Holmes\inst{1} \and Dr Santiago Miriuka \inst{2} \and Dr Carlos Luzzani \inst{2} }
+
+\institute[shortinst]{\inst{1} \textit{University of Suffolk, UK} \samelineand \inst{2} MultiplAI
+}
+
+% ====================
+% Footer (optional)
+% ====================
+
+\footercontent{
+  \href{https://github.com/MultiplAI-UoSuffolk}{https://github.com/MultiplAI-UoSuffolk} \hfill
+  School of Allied Health Sciences Research Symposium 2024, University of Suffolk \hfill
+  \href{mailto:k.chatsiou@uos.ac.uk}{k.chatsiou@uos.ac.uk}}
+% (can be left out to remove footer)
+
+% ====================
+% Logo (optional)
+% ====================
+
+% use this to include logos on the left and/or right side of the header:
+ \logoright{\includegraphics[height=10cm]{logos/UoS-small.png}}
+% \logoleft{\includegraphics[height=7cm]{logo2.pdf}}
+
+% ====================
+% Body
+% ====================
+
+\begin{document}
+
+
+\begin{frame}[t]
+\begin{columns}[t]
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+  \begin{block}{Background}
+
+\textbf{Messenger RNA (mRNA)} is a crucial component of all living organisms, present in every cell. Acting as a messenger, mRNA interacts with cellular machinery to facilitate \textbf{protein synthesis}, carrying specific instructions for the construction of proteins. 
+
+Once its role is fulfilled, the mRNA is degraded and does not persist for long periods. The potential of mRNA to instruct the body to produce therapeutic agents has been exemplified by COVID-19 mRNA vaccines, which direct cells to produce specific proteins. \textbf{Cardiovascular diseases} represent another potential application area, where the \textbf{study of proteins} associated with these conditions could inform treatment strategies. Despite its importance, the \textbf{structure of mRNA remains partially understood}, which presents a challenge for scientists. 
+
+
+   \begin{figure}
+       \centering
+       \includegraphics[width=0.8\linewidth]{image.png}
+       \caption{Typical mRNA structure}
+       \label{fig:fig1}
+   \end{figure}
+   
+\end{block}
+
+\begin{block}{Project Objectives}
+
+This project applied\textbf{ text mining and machine learning techniques}, typically used in text data analysis, to \textbf{study the mRNA structure} and identify its minimal units from existing sequencing data. Its \textbf{key objectives} were: 
+
+\begin{itemize}
+    \item reviewed the\textbf{ key literature} to understand the landscape of mRNA sequencing and NLP methods (WP1)
+    \item built a \textbf{data pre-processing pipeline for FASTQ} datafiles (WP2)
+    \item  explored \textbf{FastQ data using machine learning} (clustering) (WP3)
+\end{itemize}
+
+This pilot project was a collaboration between industry partners \textbf{MultiplAI Health} and academics from the School of Technology, Business, and Arts at the \textbf{University of Suffolk}, funded by an \textbf{Innovation Voucher from UKRI}.
+
+  \end{block}
+
+
+
+\end{column}
+
+
+
+% middle column %
+\separatorcolumn
+
+\begin{column}{\colwidth}
+ \begin{block}{Building a Data Pre-Processing Pipeline (WP2)}
+
+    We experimented with different types of pipelines for mRNA sequencing data that would work with the inhouse data of MultiplAI. Data used was \textbf{open mRNA sequencing data} matching MultiplAI's information structure. 
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{pipeline.png}
+        \caption{FASTQ pipeline overview}
+        \label{fig:pipeline-overview}
+    \end{figure}
+
+     The data pre-processing pipeline used \textbf{Python}, \textbf{Conda}, the \textbf{SRA toolkit} library, \textbf{Pandas}, \textbf{Parsel}, \textbf{Pysradb}, \textbf{Fastq-filter}, and \textbf{Kmtricks}. The script fetches metadata, retrieves SRA data files, generates FASTQ files, filters these files based on Phred quality scores, and finally generates a k-mer count matrix.
+
+  \end{block}
+
+      \begin{block}{Machine Learning on FastQ data (WP3)}
+
+    Exploring \textbf{vectorised FastQ data} using machine learning methods to identify patterns and structures was next. \textbf{Clustering} was performed using various combinations of \textbf{k-mer clustering units} and \textit{k-means} and \textit{hierarchical clustering} to identify gene or protein sequences relevant to cardiovascular diseases. While preliminary, this exploration confirmed the potential of these methods for sequencing data analysis. 
+
+    \end{block}
+\end{column}
+
+% right column %
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+
+
+    \begin{block}{Next Steps}
+
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width=0.5\linewidth]{data-possibilities.png}
+%        \caption{Processing RB data into input features of DL models - Hwang et al (2024). \textbf{a} Nucleic acid sequences can be encoded using one-hot encoding, word2vec, embedding layers, or k-mer counts.\textbf{ b} When encoding the gene expression data, the normalized expression level or rank vector can be used as an input feature. Gene correlation matrices are also often used to capture gene‒gene interactions. \textbf{c} RNA structure data can be represented using the minimum free energy (MFE), secondary structure matrices, base-pairing probability matrices, or 3D point clouds.\textbf{ d }RNA–protein interactions can be represented by counting known binding motifs or encoding CLIP results as binary binding site tensors or continuous coverage tensors. RNA‒RNA interactions can be encoded as 3D matrices to convey base pairing information.}
+%        \label{fig:Data Possibilities}
+%    \end{figure}
+
+    \begin{enumerate}
+        \item \textbf{RNA-seq to vector encoding}: Nucleic acid sequences can be encoded using one-hot encoding, word2vec, embedding layers, or k-mer counts.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\linewidth]{processing-data-forML-a.png}
+        \caption{Processing RB data into input features of DL models - Hwang et al (2024). }
+        \label{fig:processing-data-nucleic-acid}
+    \end{figure}
+
+        \item \textbf{Dimensionality reduction and Choice of Deep learning model:}
+  
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{DL-models-1.png}
+    \caption{DL architectures for RB models - Hwang et al (2024)}
+    \label{fig:DL-architectures}
+\end{figure}
+
+\small{\textbf{a }MLPs can make probabilistic predictions from biological feature tables. \textbf{b} CNNs can predict biological features from one-hot-encoded biological sequences by capturing local patterns.  \textbf{c} RNNs can process embeddings of RNA sequences to provide basewise predictions of biological features. \textbf{d} GNNs can operate on gene–gene interaction networks derived from gene correlation matrices to predict genewise biological features.} 
+
+          \end{enumerate}
+
+\small {Hwang, H., Jeon, H., Yeo, N. et al. (2024) Big data and deep learning for RNA biology. Exp Mol Med 56, 1293–1321. https://doi.org/10.1038/s12276-024-01243-w}
+
+    \end{block}
+
+%    \begin{block}{Acknowledgements}
+%    
+%    This pilot project was a collaborative effort between industry partners \textbf{MultiplAI Health} and academics from the School of Technology, Business, and Arts at the \textbf{University of Suffolk}, and was funded by an \textbf{Innovation Voucher from UKRI}, support which is gratefully acknowledged.
+%    \end{block}
+
+%\begin{block}{References}
+
+
+
+%\end{block}
+
+\end{column}
+\separatorcolumn
+
+\end{columns}
+\end{frame}
+
+\end{document}
