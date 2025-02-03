@@ -213,5 +213,5 @@
 		"overrepresented_sequences": {
 		}
 	},
-	"command": "fastp -i SRR31112377.fastq -o fastp_reports/output.fastq -h fastp_reports/report.html -j fastp_reports/report.json "
+	"command": "fastp -i SRR31112377.fastq -o fastq_reports/output.fastq -h fastp_reports/report.html -j fastp_reports/report.json --cut_right --cut_window_size 4 --qualified_quality_phred 20 "
 }
