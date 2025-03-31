@@ -2,3 +2,7 @@
 *.sh filter=lfs diff=lfs merge=lfs -text
 *fastq filter=lfs diff=lfs merge=lfs -text
 *zip filter=lfs diff=lfs merge=lfs -text
+*.fa filter=lfs diff=lfs merge=lfs -text
+*.fa.clstr filter=lfs diff=lfs merge=lfs -text
+*.fasta.clstr filter=lfs diff=lfs merge=lfs -text
+converted.fasta filter=lfs diff=lfs merge=lfs -text
