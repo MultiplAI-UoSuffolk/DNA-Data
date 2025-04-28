@@ -1,0 +1,5 @@
+Algorithm,Time (s),Num Clusters,GC Range (%),Silhouette,Davies-Bouldin
+K-means,0.92,5,35.4-68.3,0.124,1.981
+DBSCAN,8.11,69,22.8-83.4,-0.297,1.090
+GMM,3.31,5,35.6-66.7,0.103,2.619
+Hierarchical,0.57,5,35.4-72.6,0.117,2.035
