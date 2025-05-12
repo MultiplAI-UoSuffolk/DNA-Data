@@ -1,0 +1,33 @@
+name: sequence-clustering
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # Core Python
+  - python=3.9
+  
+  # Data analysis and visualisation
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  
+  # Machine learning
+  - scikit-learn
+  
+  # Bioinformatics Python packages
+  - biopython
+  
+  # Jupyter
+  - jupyter
+  
+  # Pip for additional installs
+  - pip
+
+  # External bioinformatics tools
+  # These are command-line tools installed via conda
+  - fastqc=0.11.9
+  - fastp=0.23.1
+  - cutadapt=4.1
+  - cd-hit=4.8.1
